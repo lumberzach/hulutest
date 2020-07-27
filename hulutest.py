@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 # loading webdrivers and opening the website
@@ -12,8 +13,6 @@ options = Options()
 # Path to your chrome profile
 options.add_argument("user-data-dir=C:\\Users\\Boxca\\AppData\\Local\\Google\\Chrome\\profiletwo")
 driver = webdriver.Chrome(r"C:\Users\Boxca\Downloads\Drivers\chromedriver_win32 (1)\chromedriver.exe", options=options)
-
-
 
 
 driver.get('https://www.hulu.com/search')
@@ -137,9 +136,19 @@ elif has_seasons() == True:
     choice = int(input())
 
     if episode_count < choice:
-        print(f"Please enter only digits from 1 to {episode_count}")
+        print(f"Please enter only digits from 1 to {num}")
+
+
+    driver.find_element_by_xpath("//button[@class='Select__control']").click()
+    time.sleep(1)
+    driver.find_element_by_xpath("//div[@class='Details__collection']").click()
+
+
 
     driver.find_elements_by_css_selector("button.HoverSetup__button")[choice - 1].click()
+
+
+
 
     # episodes = driver.find_elements_by_css_selector("button.HoverSetup__button")
     # for num, element in enumerate(episodes):
